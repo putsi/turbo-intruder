@@ -163,6 +163,22 @@ class OfferTurboIntruder(): IContextMenuFactory {
             probeButton.addActionListener(TurboIntruderFrame(invocation.selectedMessages[0], bounds, null, null))
             options.add(probeButton)
         }
+
+        if (invocation != null && invocation.selectedMessages[0] != null) {
+            val script = Scripts::class.java.getResource("/examples/fuzz_url.py").readText()
+            val probeButton = JMenuItem("Send to turbo intruder (fuzz url)")
+            val bounds = invocation.selectionBounds ?: IntArray(0)
+            probeButton.addActionListener(TurboIntruderFrame(invocation.selectedMessages[0], bounds, script, null))
+            options.add(probeButton)
+        }
+
+        if (invocation != null && invocation.selectedMessages[0] != null) {
+            val script = Scripts::class.java.getResource("/examples/fuzz_param.py").readText()
+            val probeButton = JMenuItem("Send to turbo intruder (fuzz param)")
+            val bounds = invocation.selectionBounds ?: IntArray(0)
+            probeButton.addActionListener(TurboIntruderFrame(invocation.selectedMessages[0], bounds, script, null))
+            options.add(probeButton)
+        }
         return options
     }
 }
